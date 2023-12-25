@@ -1,0 +1,141 @@
+@import "./variables.scss";
+.header {
+  // Add a box shadow
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // add sticky position
+  position: sticky;
+  top: 0;
+  z-index: 997;
+  // Set the background color to be white
+  background-color: white;
+    
+    ul {
+        display: flex;
+        flex-direction: row;
+        li {
+          display: flex;
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
+        }
+    }
+    img {
+      margin-right: 5px;
+    }
+    ul.navbar__menu {
+      align-items: center;
+      margin-left: 2rem;
+      list-style: none;
+      @media (max-width: $md) {
+        display: none;
+      }
+      @media (max-width: $lg) {
+          margin-left: 0;
+          margin-top: 1rem;
+      }
+    
+}
+}
+
+nav.header__top {
+    background-color: $color-primary-contrast;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 1em 0;
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    ul.navbar__menu {
+      .active {
+        color: $color-primary-dark;
+      }
+    }
+    .info {
+      max-width: 50%;
+      @media screen and (max-width: $md) {
+        max-width: 100%;
+      }
+      flex-wrap: wrap;
+      li {
+        margin-bottom: 10px;
+        color: black;
+      }
+    }
+
+}
+
+nav.navbar {
+  display: flex;
+  // Align items to the center
+  align-items: center;
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2em;
+  @media screen and (max-width:$md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar__logo {
+    @media screen and (max-width: $md) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .navbar__menu {
+    li.navItems {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+      a {
+        color: $color-primary-dark;
+        text-decoration: none;
+        &:hover {
+          color: $color-primary;
+        }
+      }
+    }
+    .navDropdown {
+      position: relative;
+      .cavet {
+        margin-left: 5px;
+      }
+      &:hover {
+        .dropdown {
+          display: block;
+        }
+      }
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        //Set width to cover content
+        width: 100%;
+        background-color: $color-primary-contrast;
+        padding: 1em;
+        border-radius: 1em;
+        li {
+          margin-bottom: 1em;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+  }
+  .navbar__toggle {
+    display: none;
+    // Remove border and add border-radius
+    border: none;
+    border-radius: 5px;
+    @media screen and (max-width: $md) {
+      display: block;
+      margin-top: 2rem;
+    }
+  }
+}

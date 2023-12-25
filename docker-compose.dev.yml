@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  app:
+    container_name: next_chaugiaphat
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data/:/app/data/
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    environment:
+      - NEXTAUTH_URL=http://localhost:3000
+      - DATABASE_URL=postgresql://user:password@postgres_chaugiaphat:5432/db?schema=public
+    env_file:
+      - .env.local
+    links:
+      - postgres
+    networks:
+      - internal-domain
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres_chaugiaphat
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    networks:
+      - internal-domain
+
+networks:
+  internal-domain:
+    driver: bridge

@@ -1,0 +1,64 @@
+
+{
+  "contact": {
+    "company_name": "Công ty TNHH Cơ Khí Giao Thông Châu Gia Phát",
+    "director": "Mr. Phúc",
+    "address": "48/5 Thái Thị Giữ, xã Bà Điểm, huyện Hóc Môn, TP HCM",
+    "email": "phuchauquang@gmail.com",
+    "phone": {
+      "number": "0915999472",
+      "display": "0915.999.472",
+      "full": "0915 999 472 ( A Phúc )"
+    }
+  },
+  "main-nav": [
+    {
+      "name": "Trang chủ",
+      "link": "/"
+    },
+    {
+      "name": "Giới thiệu",
+      "link": "/gioi-thieu/"
+    },
+    {
+      "name": "Sản phẩm",
+      "link": "/san-pham/"
+    },
+    {
+      "name": "Blogs",
+      "link": "/blogs/"
+    }
+  ],
+  "admin-nav": [
+    {
+      "name": "Dashboard",
+      "link": "/admin"
+    },
+    {
+      "name": "Danh mục",
+      "link": "/admin/danh-muc/"
+    },
+    {
+      "name": "Sản phẩm",
+      "link": "/admin/san-pham/"
+    },
+    {
+      "name": "Blogs",
+      "link": "/admin/blogs/"
+    }
+  ],
+  "articles": [{
+    "id": 1,
+    "image": "/path/to/image1.jpg",
+    "title": "Article 1",
+    "description": "Short description for Article 1",
+    "tags": ["Tag1", "Tag2"]
+  },
+  {
+    "id": 2,
+    "image": "/path/to/image2.jpg",
+    "title": "Article 2",
+    "description": "Short description for Article 2",
+    "tags": ["Tag3", "Tag4"]
+  }]
+}
