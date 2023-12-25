@@ -15,6 +15,7 @@ import ProductCard from "@components/ProductCard";
 import path from "path";
 import markdownToHtml from "lib/markdownToHTML";
 import StructuredData from "@components/structured-data";
+import Breadcrumbs from "@components/Breadcrumbs";
 
 type Props = {
   product?: ProductWithCategory;
@@ -69,6 +70,12 @@ export default function SinglePageProduct({
       },
     },
   };
+  const links = [
+    {url: "/", label: "Trang chủ"},
+    {url: "/san-pham", label: "Sản phẩm"},
+    {url: `/san-pham/${product?.categorySlug}`, label: product?.category.name as string},
+    {url: `/san-pham/${product?.categorySlug}/${product?.slug}`, label: product?.name as string}
+  ]
   return (
     <>
       <StructuredData data={structuredData} />
@@ -77,6 +84,7 @@ export default function SinglePageProduct({
         description={description}
         keywords={keywords}
       />
+      <Breadcrumbs breadcrumbs={links}/>
       {product && (
         <section className="container">
           <div className={styles.SinglePageProduct}>
@@ -115,7 +123,7 @@ export default function SinglePageProduct({
                 <Link href="tel:0945316280">
                   <Image src={phone_icon} alt="Icon" width={30} height={30} />
                   <div className={styles.contactInfo}>
-                    <p>GỌI NGAY {contact.phone}</p>
+                    <p>GỌI NGAY {contact.phone.display}</p>
                     <p>Để đặt hàng</p>
                   </div>
                   {/* <p>Để được tư vấn và đặt hàng</p> */}

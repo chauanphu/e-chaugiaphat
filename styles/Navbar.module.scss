@@ -54,13 +54,19 @@ nav.navbar {
     @media  screen and (max-width: $md) {
       padding: 2rem 0;
     }
-    .page__menu {
+    ul.page__menu {
       margin-left: 1em;
+      padding: 0.5rem;
       @media screen and (max-width: $md) {
         display: none;
       }
+      li {
+        padding: 0.5rem;
+        border-radius: 0.6rem;
+      }
       .active {
-        color: $color-primary-dark;
+        background-color: $color-primary-dark;
+        color: white;
       }
     }
     .navbar__toggle {
