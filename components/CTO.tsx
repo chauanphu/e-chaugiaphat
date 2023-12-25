@@ -27,7 +27,7 @@ const CTO = () => {
     {
       imageSrc: zalo_icon,
       buttonText: contact.phone.display,
-      buttonLink: 'https://zalo.me/0945316280',
+      buttonLink: 'https://zalo.me/'+contact.phone.number,
       background: false,
     },
   ];

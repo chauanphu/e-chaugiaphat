@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
         </div>
         <div className={styles.footer__copy_rights}>
-            <p>Bản quyền thuộc về <strong>Công ty TNHH SX TM Trần Gia Phát</strong> | Thiết kế bởi CGP</p>
+            <p>Bản quyền thuộc về <strong>{contact.company_name}</strong> | Thiết kế bởi CGP</p>
         </div>
     </footer>
   );

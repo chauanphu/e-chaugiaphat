@@ -8,75 +8,70 @@
   z-index: 997;
   // Set the background color to be white
   background-color: white;
-    
-    ul {
-        display: flex;
-        flex-direction: row;
-        li {
-          display: flex;
-          &:not(:last-child) {
-            margin-right: 1rem;
-          }
-        }
-    }
-    img {
-      margin-right: 5px;
-    }
-    ul.navbar__menu {
-      align-items: center;
-      margin-left: 2rem;
-      list-style: none;
-      @media (max-width: $md) {
-        display: none;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    li {
+      display: flex;
+      &:not(:last-child) {
+        margin-right: 1rem;
       }
-      @media (max-width: $lg) {
-          margin-left: 0;
-          margin-top: 1rem;
-      }
-    
-}
+    }
+  }
+  img {
+    margin-right: 5px;
+  }
 }
 
 nav.header__top {
-    background-color: $color-primary-contrast;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 1em 0;
-    .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+  background-color: $color-primary-contrast;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 1em 0;
+  .info {
+    max-width: 50%;
+    @media screen and (max-width: $md) {
+      max-width: 100%;
     }
-    ul.navbar__menu {
+    flex-wrap: wrap;
+    li {
+      margin-bottom: 10px;
+      color: black;
+    }
+  }
+}
+
+nav.navbar {
+  // Align items to the center
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 2em;
+  flex-direction: column;
+  .main__menu {
+    display: flex;
+    align-items: center;
+    @media  screen and (max-width: $md) {
+      padding: 2rem 0;
+    }
+    .page__menu {
+      margin-left: 1em;
+      @media screen and (max-width: $md) {
+        display: none;
+      }
       .active {
         color: $color-primary-dark;
       }
     }
-    .info {
-      max-width: 50%;
+    .navbar__toggle {
+      display: none;
+      // Remove border and add border-radius
+      border: none;
+      border-radius: 5px;
       @media screen and (max-width: $md) {
-        max-width: 100%;
-      }
-      flex-wrap: wrap;
-      li {
-        margin-bottom: 10px;
-        color: black;
+        display: block;
       }
     }
-
-}
-
-nav.navbar {
-  display: flex;
-  // Align items to the center
-  align-items: center;
-  padding: 1rem;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 2em;
-  @media screen and (max-width:$md) {
-    flex-direction: column;
-    align-items: flex-start;
   }
   .navbar__logo {
     @media screen and (max-width: $md) {
@@ -86,12 +81,14 @@ nav.navbar {
     }
   }
   .navbar__menu {
+    padding: 1.5em 0;
+    background-color: $color-primary-dark;
     li.navItems {
       &:not(:last-child) {
         margin-right: 1rem;
       }
       a {
-        color: $color-primary-dark;
+        color: white;
         text-decoration: none;
         &:hover {
           color: $color-primary;
@@ -102,6 +99,7 @@ nav.navbar {
       position: relative;
       .cavet {
         margin-left: 5px;
+        color: white;
       }
       &:hover {
         .dropdown {
@@ -115,7 +113,7 @@ nav.navbar {
         left: 0;
         //Set width to cover content
         width: 100%;
-        background-color: $color-primary-contrast;
+        background-color: $color-primary-dark;
         padding: 1em;
         border-radius: 1em;
         li {
@@ -126,16 +124,8 @@ nav.navbar {
         }
       }
     }
-
-  }
-  .navbar__toggle {
-    display: none;
-    // Remove border and add border-radius
-    border: none;
-    border-radius: 5px;
     @media screen and (max-width: $md) {
-      display: block;
-      margin-top: 2rem;
+      display: none;
     }
   }
 }
