@@ -21,7 +21,7 @@ export default function Home({categories}: HomeProps) {
   return (
     <>
       <PageDescription title='Trang chủ' keywords='Châu Gia Phát, Trang chủ, đèn giao thông, an toàn giao thông'/>
-      <Banner image={'/api/images/banner/banner-main.webp'} alt='Banner'/>
+      <Banner image={['/api/images/banner/banner-main.webp']} isCarousel={true} alt='Banner'/>
       <Section title={"Giới thiệu"} image={about_us_icon} contrast_bg={true}>
         <Banner image={process_banner} alt="Qui trình đặt hàng"/>
       </Section>

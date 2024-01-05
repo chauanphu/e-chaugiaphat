@@ -40,8 +40,8 @@ export default function SinglePageProduct({
     "@type": "Product",
     name: product?.name,
     image: product?.image
-      ? `${process.env.NEXT_PUBLIC_DOMAIN}/api/images/san-pham/${product?.image}`
-      : "",
+      ? [`${process.env.NEXT_PUBLIC_DOMAIN}/api/images/san-pham/${product?.image}`]
+      : [],
     description: product?.short_description,
     sku: product?.sku,
     mpn: product?.sku,
@@ -66,7 +66,7 @@ export default function SinglePageProduct({
       availability: "https://schema.org/InStock",
       seller: {
         "@type": "Organization",
-        name: "Trần Gia Phát",
+        name: contact.company_name,
       },
     },
   };
