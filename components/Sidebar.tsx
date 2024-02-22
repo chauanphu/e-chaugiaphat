@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open = false, onSelection, handleClos
                 </div>
                 {/* This is contact info */}
                 <div className={styles.bottom}>
-                    <Link href='tel:0945316280'>
+                    <Link href={'tel:'+contact.phone.number}>
                         <Image src={phone_icon} alt="Icon"/> {contact.phone.display}
                     </Link>
                     <Link href='https://zalo.me/0945316280' rel="noopener noreferrer" target="_blank">
