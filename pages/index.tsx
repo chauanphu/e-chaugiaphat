@@ -41,9 +41,6 @@ export default function Home({categories}: HomeProps) {
         Hello
         {/* <ArticleCarousel articles={articles} seconds={3}/> */}
       </Section>
-      <Section title={"Khách hàng"} image={customer_icon}>
-        <Banner image={customers_baner} alt="Customer Banner"/>
-      </Section>
     </>
   )
 }

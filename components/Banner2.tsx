@@ -21,8 +21,8 @@ export default function Banner2({ image, alt }) {
         className={styles.banner__text}
       >
         <h1>Cơ khí Giao thông Châu Gia Phát</h1>
-        <p>- Đơn vị sản xuất thiết bị an toàn giao thông #1 Việt Nam</p>
-        <p>- Chuyên cung cấp đèn tín hiệu giao thông, đèn chiếu sáng, biển báo hiệu, ...</p>
+        <p>✨ Đơn vị sản xuất thiết bị an toàn giao thông #1 Việt Nam</p>
+        <p>✨ Chuyên cung cấp đèn tín hiệu giao thông, đèn chiếu sáng, biển báo hiệu, ...</p>
       </div>
     </div>
   );
