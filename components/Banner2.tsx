@@ -11,8 +11,6 @@ export default function Banner2({ image, alt }) {
         style={{
           width: "100%",
           height: "auto",
-          minHeight: "200px",
-          overflow: "hidden",
         }}
         alt={alt}
         priority={false}

@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open = false, onSelection, handleClos
     const router = useRouter()
     const activeLink = router.pathname
     var pages = getPages()
-    pages['2'].subPages = categories
+    pages['3'].subPages = categories
     const contact = getContact()
     return (
         <>
