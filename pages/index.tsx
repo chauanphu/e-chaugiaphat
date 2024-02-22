@@ -1,6 +1,9 @@
 import PageDescription from '../components/page-description';
 import Banner from '../components/Banner';
 import Section from '../components/Section';
+import ProductList from '@components/ProductList';
+import Banner2 from '@components/Banner2';
+
 // import { Product, Category } from '@prisma/client';
 import { CategoryWithProducts } from '../lib/prisma';
 import about_us_icon from '../public/images/about-us-icon.gif';
@@ -11,7 +14,6 @@ import process_banner from '../public/images/qui-trinh-dat-hang.webp';
 
 import customers_baner from '../public/images/customers-banner.webp';
 import { getManyCategoryWithProd } from 'lib/query';
-import ProductList from '@components/ProductList';
 
 
 interface HomeProps {
@@ -21,9 +23,13 @@ export default function Home({categories}: HomeProps) {
   return (
     <>
       <PageDescription title='Trang chủ' keywords='Châu Gia Phát, Trang chủ, đèn giao thông, an toàn giao thông'/>
-      <Banner image={'/api/images/banner/banner-main.webp'} isCarousel={false} alt='Banner'/>
-      <Section title={"Giới thiệu"} image={about_us_icon} contrast_bg={true}>
+      <Banner2 image={'/api/images/banner/banner-main.webp'} alt='Banner'/>
+      {/* <Section title={"Giới thiệu"} image={about_us_icon} contrast_bg={true}>
         <Banner image={process_banner} alt="Qui trình đặt hàng"/>
+      </Section> */}
+      <Section title={"Dự án đã thực hiện"} image={about_us_icon} contrast_bg={true}>
+        {/* <Banner image={process_banner} alt="Qui trình đặt hàng"/> */}
+        Hello
       </Section>
       <Section title={"Sản phẩm"} image={cart_icon}>
         {categories && categories.map((category) => (
