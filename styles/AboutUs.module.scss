@@ -1,0 +1,32 @@
+@import './variables.scss';
+
+.about__us {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  p {
+    font-size: 1.2rem;
+  }
+  .features {
+    // Add 4 column layout
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    @media screen and (max-width: $md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: $sm) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+        background-color: $color-secondary;
+        border-radius: 20px;
+        h3 {
+            margin: 1rem 0;
+        }
+    }
+  }
+}

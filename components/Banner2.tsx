@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from 'styles/Banner2.module.scss'
 export default function Banner2({ image, alt }) {
   return (

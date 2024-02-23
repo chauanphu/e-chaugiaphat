@@ -2,14 +2,14 @@ import PageDescription from "../components/page-description";
 import Section from "../components/Section";
 import ProductList from "@components/ProductList";
 import Banner2 from "@components/Banner2";
+import ProjectList from "@components/ProjectList";
+import AboutUs from "@components/AboutUs";
 
 // import { Product, Category } from '@prisma/client';
 import { CategoryWithProducts } from "../lib/prisma";
 import about_us_icon from "../public/images/about-us-icon.gif";
 import cart_icon from "../public/images/cart-icon.gif";
-import articles_icon from "../public/images/news-icon.gif";
 import { getManyCategoryWithProd, getManyProjects } from "lib/query";
-import ProjectList from "@components/ProjectList";
 import { Project } from "@prisma/client";
 
 interface HomeProps {
@@ -24,12 +24,8 @@ export default function Home({ categories, projects }: HomeProps) {
         keywords="Châu Gia Phát, Trang chủ, đèn giao thông, an toàn giao thông"
       />
       <Banner2 image={"/api/images/banner/banner-main.webp"} alt="Banner" />
-      <Section
-        title={"Dự án đã thực hiện"}
-        image={about_us_icon}
-        contrast_bg={true}
-      >
-        <ProjectList projects={projects} isCarousel={true}></ProjectList>
+      <Section title={"Về Cơ khí Giao thông Châu Gia Phát"} contrast_bg={true}>
+        <AboutUs />
       </Section>
       <Section title={"Sản phẩm"} image={cart_icon}>
         {categories &&
@@ -42,9 +38,12 @@ export default function Home({ categories, projects }: HomeProps) {
           ))}
         {/* <ProductCard category={category} products={}/> */}
       </Section>
-      <Section title={"Tin tức"} image={articles_icon} contrast_bg={true}>
-        Đang cập nhật
-        {/* <ArticleCarousel articles={articles} seconds={3}/> */}
+      <Section
+        title={"Dự án đã thực hiện"}
+        image={about_us_icon}
+        contrast_bg={true}
+      >
+        <ProjectList projects={projects} isCarousel={true}></ProjectList>
       </Section>
     </>
   );
