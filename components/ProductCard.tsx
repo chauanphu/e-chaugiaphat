@@ -40,17 +40,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               />
               ({product.rating ? product.rating : 4.5})
             </span>
-            {/* <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                    <meta itemProp="priceCurrency" content="VND" />
-                    <meta itemProp="price" content={product.price.toString()} />
-                    <meta itemProp="priceValidUntil" content="2022-12-31" />
-                    <link itemProp="availability" href="https://schema.org/InStock" />
-                </div>
-                <meta itemProp="itemCondition" content="https://schema.org/NewCondition" />
-                <meta itemProp="sku" content={product.sku} />
-                <div itemProp="brand" itemScope itemType="https://schema.org/Brand">
-                    <meta itemProp="name" content={product.brand} />
-                </div> */}
           </div>
         </Link>
       )}

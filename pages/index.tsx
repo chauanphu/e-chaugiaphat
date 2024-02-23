@@ -8,17 +8,15 @@ import { CategoryWithProducts } from "../lib/prisma";
 import about_us_icon from "../public/images/about-us-icon.gif";
 import cart_icon from "../public/images/cart-icon.gif";
 import articles_icon from "../public/images/news-icon.gif";
-import { getManyCategoryWithProd } from "lib/query";
-import ImageList from "@components/ImageList";
+import { getManyCategoryWithProd, getManyProjects } from "lib/query";
+import ProjectList from "@components/ProjectList";
+import { Project } from "@prisma/client";
 
 interface HomeProps {
   categories: CategoryWithProducts[];
-  projectImages: {
-    src: string;
-    alt: string;
-  }[];
+  projects: Project[];
 }
-export default function Home({ categories, projectImages }: HomeProps) {
+export default function Home({ categories, projects }: HomeProps) {
   return (
     <>
       <PageDescription
@@ -31,7 +29,7 @@ export default function Home({ categories, projectImages }: HomeProps) {
         image={about_us_icon}
         contrast_bg={true}
       >
-        <ImageList images={projectImages}></ImageList>
+        <ProjectList projects={projects} isCarousel={true}></ProjectList>
       </Section>
       <Section title={"Sản phẩm"} image={cart_icon}>
         {categories &&
@@ -56,26 +54,9 @@ export default function Home({ categories, projectImages }: HomeProps) {
 export async function getServerSideProps() {
   // Query all categories with their top 8 products
   const categories = await getManyCategoryWithProd(8);
-  const projectImages = [
-    {
-      src: "/api/images/du-an/du-an-1.webp",
-      alt: "Dự án 1",
-    },
-    {
-      src: "/api/images/du-an/du-an-1.webp",
-      alt: "Dự án 1",
-    },
-    {
-      src: "/api/images/du-an/du-an-1.webp",
-      alt: "Dự án 1",
-    },
-    {
-      src: "/api/images/du-an/du-an-1.webp",
-      alt: "Dự án 1",
-    },
-  ];
+  const projects = await getManyProjects();
   return {
-    props: { categories, projectImages },
+    props: { categories, projects },
     // revalidate: 10,
   };
 }

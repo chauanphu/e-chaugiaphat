@@ -1,4 +1,4 @@
-import { Category, Product } from "@prisma/client";
+import { Category, Product, Project } from "@prisma/client";
 import prisma from "./prisma";
 import { ProductWithCategory, CategoryWithSub } from "./prisma";
 
@@ -95,7 +95,7 @@ export async function getManyCategoryWithProd(limit) {
               },
             },
           ],
-        }
+        },
       ],
     },
   });
@@ -184,7 +184,7 @@ export async function getAllSlugs(): Promise<string[]> {
     const products = await getProducts(category);
     slugs.push(category.slug);
     for (const product of products) {
-      slugs.push(category.slug + '/' + product.slug);
+      slugs.push(category.slug + "/" + product.slug);
     }
   }
   return slugs;
@@ -267,4 +267,14 @@ export async function updateOrCreateProduct(
   } catch (error) {
     return null;
   }
+}
+
+export async function getManyProjects(limit: number = 8): Promise<Project[]> {
+  const projects = await prisma.project.findMany({
+    take: limit,
+    orderBy: {
+      id: "desc",
+    },
+  });
+  return projects;
 }

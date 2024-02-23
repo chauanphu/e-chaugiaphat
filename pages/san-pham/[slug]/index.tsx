@@ -24,10 +24,10 @@ export default function Shop({ category, totalProduct }: ShopProps) {
     "Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động";
 
   const links = [
-    {url: "/", label: "Trang chủ"},
-    {url: "/san-pham", label: "Sản phẩm"},
-    {url: `/san-pham/${category.slug}`, label: category.name}
-  ]
+    { url: "/", label: "Trang chủ" },
+    { url: "/san-pham", label: "Sản phẩm" },
+    { url: `/san-pham/${category.slug}`, label: category.name },
+  ];
   return (
     <>
       <PageDescription
@@ -35,7 +35,7 @@ export default function Shop({ category, totalProduct }: ShopProps) {
         description={description}
         keywords={keywords}
       />
-      <Breadcrumbs breadcrumbs={links}/>
+      <Breadcrumbs breadcrumbs={links} />
       <Section title={category.name}>
         {category.products && (
           <>
@@ -46,9 +46,14 @@ export default function Shop({ category, totalProduct }: ShopProps) {
               products={category.products}
               isCarousel={false}
             />
-            <Pagniation currentPage={currentPage} productsPerPage={12} onPageChange={page => {
-              router.push(`/san-pham/${category.slug}?page=${page}`);
-            } } totalProducts={totalProduct}/>
+            <Pagniation
+              currentPage={currentPage}
+              productsPerPage={12}
+              onPageChange={(page) => {
+                router.push(`/san-pham/${category.slug}?page=${page}`);
+              }}
+              totalProducts={totalProduct}
+            />
           </>
         )}
       </Section>

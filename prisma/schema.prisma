@@ -28,3 +28,11 @@ model Product {
   categorySlug      String
   category          Category @relation(fields: [categorySlug], references: [slug])
 }
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+  image_url      String
+}

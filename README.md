@@ -7,9 +7,10 @@ date: 2022-01-01
 # E-quanaocongnhan
 
 ## I. Hướng dẫn set up
+
 1. Tải repository về máy
 2. Cài đặt .env.developement:
-    - `NEXTAUTH_URL`="http://localhost:3000"
+    - `NEXTAUTH_URL`="<http://localhost:3000>"
     - `DATABASE_URL`="postgresql://postgres@localhost:5432/local_db"
 3. Cài đặt .env.local
     - `NEXT_PUBLIC_DOMAIN`: domain cho deployment
@@ -22,11 +23,13 @@ date: 2022-01-01
     - `npx prisma migrate dev`: Push change to database
 5. Khởi chạy developement:
     - `npm run dev` hoặc build `docker-compose.dev.yml`
+
 ## II. Hướng dẫn set up cho deployment
 
 ## III. Hướng dẫn đăng sản phẩm hàng loạt
+
 1. Vào `/admin` ( Đăng nhập nếu chưa được xác thực )
-2. Tải file mẫu về qua đường link `/api/san-pham/download`. VD: https://quanaocongnhan.com/api/san-pham/download
+2. Tải file mẫu về qua đường link `/api/san-pham/download`. VD: <https://quanaocongnhan.com/api/san-pham/download>
 3. Chỉnh sửa file excel
 4. Cập nhật danh mục sản phẩm
     - Vào mục "Danh mục"
@@ -40,9 +43,10 @@ date: 2022-01-01
     - Tải hình ảnh sản phẩm lên
 
 <strong>Hình ảnh sản phẩm (webp*)</strong> được ở thư mục _images/san-pham/[slug].webp <br/>
-<strong>Mô tả sản phẩm (Markdown)</strong> được ở thư mục _posts/san-pham/[slug].md
+<strong>Mô tả sản phẩm (Markdown)</strong> được ở thư mục_posts/san-pham/[slug].md
 
-### IV. Hướng dẫn chỉnh sửa sản phẩm / danh mục trong Excel:
+### IV. Hướng dẫn chỉnh sửa sản phẩm / danh mục trong Excel
+
 1. Danh mục:
     - `Slug`: Đường link danh mục. VD: quan-ao-cong-nhan
     - `Name`: Tên danh mục. VD Quần áo công nhân
