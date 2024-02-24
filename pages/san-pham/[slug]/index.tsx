@@ -8,12 +8,17 @@ import { getOneCategoryWithProd } from "lib/query";
 import Pagniation from "@components/Pagniation";
 import { useRouter } from "next/router";
 import Breadcrumbs from "@components/Breadcrumbs";
+import path from "path";
+import markdownToHtml from "lib/markdownToHTML";
+import blog_style from "styles/Blog.module.scss";
+
 interface ShopProps {
   category: CategoryWithProducts;
   totalProduct: number;
+  htmlContent: string;
 }
 
-export default function Shop({ category, totalProduct }: ShopProps) {
+export default function Shop({ category, totalProduct, htmlContent }: ShopProps) {
   // Get the page number from query
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
@@ -57,6 +62,11 @@ export default function Shop({ category, totalProduct }: ShopProps) {
           </>
         )}
       </Section>
+      <div className={`container ${blog_style.blog}`}>
+        <div
+          dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
+        />
+      </div>
     </>
   );
 }
@@ -73,8 +83,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const category = result.category;
   const totalProduct = result.total;
+  const descriptionPath = path.join(
+    process.cwd(),
+    "data",
+    "_posts",
+    "san-pham.md"
+  );
+  const htmlContent = await markdownToHtml(descriptionPath);
   return {
-    props: { category, totalProduct },
+    props: { category, totalProduct, htmlContent },
     // revalidate: 10,
   };
 };

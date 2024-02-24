@@ -38,8 +38,6 @@ export default function AboutUs({ htmlContent }: Props) {
 
 // Config as server side rendering get slug from params
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.product || "";
-  // // Query the category with its top 8 products by slug
   const descriptionPath = path.join(
     process.cwd(),
     "data",
@@ -49,6 +47,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const htmlContent = await markdownToHtml(descriptionPath);
   return {
     props: { htmlContent },
-    // revalidate: 10,
   };
 };

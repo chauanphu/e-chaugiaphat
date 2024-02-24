@@ -19,6 +19,7 @@
     "react-multi-carousel": "^2.8.4",
     "react-rating-stars-component": "^2.2.0",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1",
     "sharp": "^0.32.6"
   },

@@ -2,15 +2,18 @@ import Breadcrumbs from "@components/Breadcrumbs";
 import ProjectList from "@components/ProjectList";
 import Section from "@components/Section";
 import PageDescription from "@components/page-description";
+import markdownToHtml from "lib/markdownToHTML";
 import { getManyCategoryWithProd, getManyProjects } from "lib/query";
+import path from "path";
+import blog_style from "styles/Blog.module.scss";
 
-export default function ProjectPage({ projects }) {
+export default function ProjectPage({ projects, htmlContent }) {
   // cast category.product as Product
 
   const description =
-    "Trần Gia Phát chuyên may mặc đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động,...";
+    "Với kinh nghiệm thực hiện nhiều dự án lớn nhỏ và năng lực sản xuất mạnh mẽ, công ty chúng tôi tự tin đáp ứng mọi nhu cầu của khách hàng.";
   const keywords =
-    "Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động";
+    "Châu Gia Phát,";
   const links = [
     { url: "/", label: "Trang chủ" },
     { url: "/du-an", label: "Dự án" },
@@ -26,15 +29,26 @@ export default function ProjectPage({ projects }) {
       <Section title="Dự án">
         {projects && <ProjectList projects={projects} isCarousel={false} />}
       </Section>
+      <div className={`container ${blog_style.blog}`}>
+        <div
+          dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
+        />
+      </div>
     </>
   );
 }
 
 export async function getServerSideProps() {
-  // Query all categories with their top 8 products
   const projects = await getManyProjects();
+  const descriptionPath = path.join(
+    process.cwd(),
+    "data",
+    "_posts",
+    "du-an.md"
+  );
+  const htmlContent = await markdownToHtml(descriptionPath);
+  
   return {
-    props: { projects },
-    // revalidate: 10,
+    props: { projects, htmlContent },
   };
 }
