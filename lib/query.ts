@@ -273,7 +273,7 @@ export async function getManyProjects(limit: number = 8): Promise<Project[]> {
   const projects = await prisma.project.findMany({
     take: limit,
     orderBy: {
-      id: "desc",
+      url: "desc",
     },
   });
   return projects;

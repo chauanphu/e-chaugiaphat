@@ -4,7 +4,6 @@ import Link from 'next/link';
 import styles from '../styles/CTO.module.scss';
 
 import phone_icon from '../public/images/call-animated.gif';
-import facebook_icon from '../public/images/facebook-icon.gif';
 import zalo_icon from '../public/images/zalo-icon.gif';
 import { getContact } from 'lib/utils';
 
@@ -12,8 +11,8 @@ const CTO = () => {
   const contact = getContact();
   const buttons = [
     {
-      imageSrc: phone_icon,
-      buttonText: contact.phone.display,
+      // imageSrc: phone_icon,
+      buttonText: contact.phone.display + "( VP HCM )",
       buttonLink: 'tel:' + contact.phone.number,
       background: true,
 
@@ -41,7 +40,7 @@ const CTO = () => {
             rel="noopener noreferrer" target="_blank"
         >
           <span>{button.buttonText}</span>
-          <Image src={button.imageSrc} alt="Icon" height={35}/>
+          {button.imageSrc && <Image src={button.imageSrc} alt="Icon" height={35}/>}
         </Link>
         
       ))}
