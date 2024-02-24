@@ -4,19 +4,21 @@ export default function AboutUs({}) {
   return (
     <div className={style.about__us}>
       <p>
-        Với đội ngũ kỹ sư có trình độ cao, luôn đón đầu công nghệ mới, chúng tôi
-        là nhà cung cấp giải pháp và tích hợp hệ thống chuyên nghiệp đáng tin
-        cậy của các bạn.
-      </p>
-      <p>
-        Với khả năng và kinh nghiệm của đội ngũ kỹ sư, chính sách hậu mãi tốt và
-        sự chăm sóc khách hàng thường xuyên, chúng tôi đã tạo uy tín tốt đối với
-        khách hàng. Đây chính là yếu tố tạo tốc độ tăng trưởng cao của
         <span style={{ color: "red", fontWeight: "bold" }}>
           {" "}
-          Công ty TNHH CƠ KHÍ GIAO THÔNG CHÂU GIA PHÁT
+          Công ty TNHH Thiết bị Giao thông Châu Gia Phát
         </span>{" "}
-        trong thời gian qua.
+        là một trong những công ty thiết bị giao thông hàng đầu, với đội ngũ kỹ sư
+        chuyên nghiệp và giàu kinh nghiệm. Chúng tôi luôn đặt mình vào vị thế
+        tiên phong trong việc đón đầu xu hướng công nghệ mới nhất, từ đó đảm bảo
+        rằng sản phẩm của chúng tôi luôn đáp ứng được những yêu cầu kỹ thuật cao
+        nhất và mang lại hiệu suất tối ưu cho khách hàng.
+      </p>
+      <p>
+        Sự cam kết về chất lượng không ngừng nâng cao cùng với dịch vụ tận tình
+        và chu đáo là điểm mạnh giúp Châu Gia Phát xây dựng lòng tin và uy tín
+        trong lòng khách hàng. Chúng tôi tự hào là đối tác đáng tin cậy cho mọi
+        dự án giao thông.
       </p>
       <div className={style.features}>
         <div className={style.item}>

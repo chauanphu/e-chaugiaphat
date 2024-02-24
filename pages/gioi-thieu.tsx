@@ -5,6 +5,8 @@ import path from "path";
 import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 import Breadcrumbs from "@components/Breadcrumbs";
 import StructuredData from "@components/structured-data";
+import blog_style from 'styles/Blog.module.scss'
+
 type Props = {
   htmlContent?: string;
 };
@@ -24,12 +26,12 @@ export default function AboutUs({ htmlContent }: Props) {
         keywords="Đồng phục Trần Gia Phát, Về chúng tôi, Giới thiệu"
         og={page_og}
       />
-      <section className="container">
+      <div className={`container ${blog_style.blog}`}>
         <Breadcrumbs breadcrumbs={links} />
         <div
           dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
         />
-      </section>
+      </div>
     </>
   );
 }

@@ -1,0 +1,49 @@
+@import "variables.scss";
+
+.blog {
+    font-size: 1.2rem;
+    @media screen and (max-width: $sm){
+        font-size: 1rem;
+    }
+    h1 {
+        background-color: $color-secondary-dark;
+        color: white;
+        padding: 0.5rem 0;
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-weight: 700;
+        @media screen and (max-width: 768px){
+            font-size: 1.1rem;
+        }
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+    p {
+        // Increase line height
+        line-height: 1.8;
+    }
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            margin: 1rem 0;
+            padding: 1rem;
+            align-items: center;
+            @media screen and (max-width: 768px){
+                padding: 0.5rem;
+            }
+            a {
+                color: $color-primary-dark;
+                text-decoration: none;
+                font-weight: 700;
+                &:hover {
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+}
