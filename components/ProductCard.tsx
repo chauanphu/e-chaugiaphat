@@ -29,9 +29,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               {product.name}
             </h2>
             <p className={styles.ProductCard__price}>
-              {product.price.toLocaleString("en-US")} đ
+              {/* {product.price.toLocaleString("en-US")} đ */}
+              Liên hệ để nhận báo giá
             </p>
-            <span className={styles.ProductCard__rating}>
+            {/* <span className={styles.ProductCard__rating}>
               <StarRatings
                 value={product.rating ? product.rating : 4.5}
                 numberOfStars={5}
@@ -39,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 editing={false}
               />
               ({product.rating ? product.rating : 4.5})
-            </span>
+            </span> */}
           </div>
         </Link>
       )}

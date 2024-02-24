@@ -18,12 +18,12 @@ const CTO = () => {
       background: true,
 
     },
-    {
-      imageSrc: facebook_icon,
-      buttonText: 'Facebook',
-      buttonLink: 'https://www.facebook.com/dongphuctrangiaphat',
-      background: false,
-    },
+    // {
+    //   imageSrc: facebook_icon,
+    //   buttonText: 'Facebook',
+    //   buttonLink: 'https://www.facebook.com/dongphuctrangiaphat',
+    //   background: false,
+    // },
     {
       imageSrc: zalo_icon,
       buttonText: contact.phone.display,

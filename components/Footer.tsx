@@ -35,6 +35,13 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div className={styles.col}>
+                  <h2 className={styles.title}>Liên hệ</h2>
+                  <ul className={styles.content}>
+                    <li><h3>Hotline: {contact.phone.full}</h3></li>
+                    <li><h3>Email: {contact.email}</h3></li>
+                  </ul>
+                </div>
+                {/* <div className={styles.col}>
                   <h2 className={styles.title}>Fanpage</h2>
                   <iframe 
                   src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdongphuctrangiaphat&tabs=timeline&width=340&height=250&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=729011701570713" 
@@ -43,7 +50,7 @@ const Footer = () => {
                   height="250" 
                   allowFullScreen={true} 
                   allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-               </div>
+               </div> */}
             </div>
         </div>
         <div className={styles.footer__copy_rights}>
