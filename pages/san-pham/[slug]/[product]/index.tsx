@@ -17,16 +17,20 @@ import markdownToHtml from "lib/markdownToHTML";
 import StructuredData from "@components/structured-data";
 import Breadcrumbs from "@components/Breadcrumbs";
 
+import blog_style from "styles/Blog.module.scss";
+
 type Props = {
   product?: ProductWithCategory;
   related_products?: ProductWithCategory[];
-  htmlContent?: string;
+  descriptionContent?: string;
+  contactContent?: string;
 };
 
 export default function SinglePageProduct({
   product,
   related_products,
-  htmlContent,
+  descriptionContent,
+  contactContent,
 }: Props) {
   const description = product?.short_description
     ? product.short_description
@@ -40,7 +44,9 @@ export default function SinglePageProduct({
     "@type": "Product",
     name: product?.name,
     image: product?.image
-      ? [`${process.env.NEXT_PUBLIC_DOMAIN}/api/images/san-pham/${product?.image}`]
+      ? [
+          `${process.env.NEXT_PUBLIC_DOMAIN}/api/images/san-pham/${product?.image}`,
+        ]
       : [],
     description: product?.short_description,
     sku: product?.sku,
@@ -71,11 +77,17 @@ export default function SinglePageProduct({
     },
   };
   const links = [
-    {url: "/", label: "Trang chủ"},
-    {url: "/san-pham", label: "Sản phẩm"},
-    {url: `/san-pham/${product?.categorySlug}`, label: product?.category.name as string},
-    {url: `/san-pham/${product?.categorySlug}/${product?.slug}`, label: product?.name as string}
-  ]
+    { url: "/", label: "Trang chủ" },
+    { url: "/san-pham", label: "Sản phẩm" },
+    {
+      url: `/san-pham/${product?.categorySlug}`,
+      label: product?.category.name as string,
+    },
+    {
+      url: `/san-pham/${product?.categorySlug}/${product?.slug}`,
+      label: product?.name as string,
+    },
+  ];
   return (
     <>
       <StructuredData data={structuredData} />
@@ -84,7 +96,7 @@ export default function SinglePageProduct({
         description={description}
         keywords={keywords}
       />
-      <Breadcrumbs breadcrumbs={links}/>
+      <Breadcrumbs breadcrumbs={links} />
       {product && (
         <section className="container">
           <div className={styles.SinglePageProduct}>
@@ -133,7 +145,18 @@ export default function SinglePageProduct({
             </div>
           </div>
           <h1>Mô tả</h1>
-          <div dangerouslySetInnerHTML={{ __html: htmlContent || "" }} />
+            <div
+              className={blog_style.blog}
+              dangerouslySetInnerHTML={{
+                __html: descriptionContent || "Chưa cập nhật",
+              }}
+            />
+            <div
+              className={blog_style.contact}
+              dangerouslySetInnerHTML={{
+                __html: contactContent || "Chưa cập nhật",
+              }}
+            />
           {related_products && related_products.length > 0 && (
             <>
               <h1>Sản phẩm tương tự</h1>
@@ -164,13 +187,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
   const descriptionPath = path.join(
     process.cwd(),
+    "data",
     "_posts",
     "san-pham",
     `${product?.slug}.md`
   );
-  const htmlContent = await markdownToHtml(descriptionPath);
+  const contactPath = path.join(process.cwd(), "data", "_posts", "lien-he.md");
+  const descriptionContent = await markdownToHtml(descriptionPath);
+  const contactContent = await markdownToHtml(contactPath);
   return {
-    props: { product, related_products, htmlContent },
+    props: { product, related_products, descriptionContent, contactContent },
     // revalidate: 10,
   };
 };
