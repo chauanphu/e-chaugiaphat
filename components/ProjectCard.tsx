@@ -22,7 +22,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({  project }) => {
               alt={project.name}
               width={150}
               height={150}
-              sizes="(max-width: 150px) 100vw"
             />
             <h2 className={styles.ProductCard__title}>
               {project.name}

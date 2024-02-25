@@ -282,3 +282,12 @@ export async function getManyProjects(limit: number = 6, skip: number = 0): Prom
   });
   return {projects: projects, total: await prisma.project.count()};
 }
+
+export async function getOneProjectBySlug(slug: string): Promise<Project | null> {
+  const project = await prisma.project.findUnique({
+    where: {
+      url: slug,
+    },
+  });
+  return project;
+}

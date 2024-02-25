@@ -9,7 +9,7 @@ import MyCarousel from './MyCarousel';
 
 interface ProductCardProps {
   products: Product[];
-  category: Category;
+  category?: Category;
   hasTitle?: boolean;
   isCarousel?: boolean;
 }

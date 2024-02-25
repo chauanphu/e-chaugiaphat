@@ -55,7 +55,7 @@ export default function Home({ categories, projects }: HomeProps) {
 export async function getServerSideProps() {
   // Query all categories with their top 8 products
   const categories = await getManyCategoryWithProd(8);
-  const projects = await getManyProjects();
+  const projects = (await getManyProjects(6, 0)).projects;
   return {
     props: { categories, projects },
     // revalidate: 10,

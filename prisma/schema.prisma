@@ -26,6 +26,7 @@ model Product {
   long_description  String?
   price             Int
   categorySlug      String
+  projects   Project[] @relation("ProjectToProduct")
   category          Category @relation(fields: [categorySlug], references: [slug])
 }
 
@@ -34,4 +35,5 @@ model Project {
   name        String
   description String
   image_url      String
+  products   Product[] @relation("ProjectToProduct")
 }
