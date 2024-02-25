@@ -34,4 +34,9 @@ if (process.env.NODE_ENV === 'production') {
   prisma = global.prisma;
 }
 
+const projectWithProduct = Prisma.validator<Prisma.ProjectDefaultArgs>()({
+  include: { products: true },
+})
+export type ProjectWithProduct = Prisma.ProjectGetPayload<typeof projectWithProduct>
+
 export default prisma;

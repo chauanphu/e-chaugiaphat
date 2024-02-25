@@ -4,15 +4,15 @@ import PageDescription from "@components/page-description";
 import markdownToHtml from "lib/markdownToHTML";
 import { getOneProjectBySlug } from "lib/query";
 import path from "path";
-import { Project } from "@prisma/client";
 import blog_style from "styles/Blog.module.scss";
 import ProductList from "@components/ProductList";
+import { ProjectWithProduct } from "lib/prisma";
 
 export default function ProjectDetailPage({
   project,
   htmlContent,
 }: {
-  project: Project;
+  project: ProjectWithProduct;
   htmlContent: string;
 }) {
   // cast category.product as Product
@@ -44,6 +44,7 @@ export default function ProjectDetailPage({
             alt={project.name}
             width={300}
             height={300}
+            priority={true}
             // style= {{width: "100%", height: "auto"}}
           />
           <p>
@@ -72,6 +73,7 @@ export async function getServerSideProps({ params }) {
   const htmlContent = await markdownToHtml(descriptionPath);
   const slug = params?.project || "";
   const project = await getOneProjectBySlug(slug);
+  console.log(project);
   return {
     props: { project, htmlContent },
     // revalidate: 10,

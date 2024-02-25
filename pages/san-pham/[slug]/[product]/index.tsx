@@ -103,7 +103,8 @@ export default function SinglePageProduct({
               <h1>{product.name}</h1>
               <p className={styles.available}>CÒN HÀNG</p>
               <p className={styles.price}>
-                {product.price.toLocaleString("en-US")} đ
+                {/* {product.price.toLocaleString("en-US")} đ */}
+                Liên hệ để nhận báo giá
               </p>
               <span className={styles.rating}>
                 <StarRatings

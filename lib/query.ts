@@ -1,5 +1,5 @@
 import { Category, Product, Project } from "@prisma/client";
-import prisma from "./prisma";
+import prisma, { ProjectWithProduct } from "./prisma";
 import { ProductWithCategory, CategoryWithSub } from "./prisma";
 
 export async function getManyCategories(): Promise<Category[]> {
@@ -283,10 +283,13 @@ export async function getManyProjects(limit: number = 6, skip: number = 0): Prom
   return {projects: projects, total: await prisma.project.count()};
 }
 
-export async function getOneProjectBySlug(slug: string): Promise<Project | null> {
+export async function getOneProjectBySlug(slug: string): Promise<ProjectWithProduct | null> {
   const project = await prisma.project.findUnique({
     where: {
       url: slug,
+    },
+    include: {
+      products: true,
     },
   });
   return project;
