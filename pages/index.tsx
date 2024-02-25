@@ -11,6 +11,7 @@ import about_us_icon from "../public/images/about-us-icon.gif";
 import cart_icon from "../public/images/cart-icon.gif";
 import { getManyCategoryWithProd, getManyProjects } from "lib/query";
 import { Project } from "@prisma/client";
+import GoogleMap from "@components/GoogleMap";
 
 interface HomeProps {
   categories: CategoryWithProducts[];
@@ -45,6 +46,7 @@ export default function Home({ categories, projects }: HomeProps) {
       >
         <ProjectList projects={projects} isCarousel={true}></ProjectList>
       </Section>
+      <GoogleMap />
     </>
   );
 }

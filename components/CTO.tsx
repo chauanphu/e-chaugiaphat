@@ -12,11 +12,11 @@ const CTO = () => {
   const buttons = [
     {
       // imageSrc: phone_icon,
-      buttonText: contact.phone.display + "( VP HCM )",
+      buttonText: contact.phone.display + " ( VP HCM )",
       buttonLink: 'tel:' + contact.phone.number,
-      background: true,
-
+      background: true, 
     },
+    
     // {
     //   imageSrc: facebook_icon,
     //   buttonText: 'Facebook',

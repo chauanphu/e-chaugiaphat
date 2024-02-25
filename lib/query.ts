@@ -269,12 +269,16 @@ export async function updateOrCreateProduct(
   }
 }
 
-export async function getManyProjects(limit: number = 8): Promise<Project[]> {
+export async function getManyProjects(limit: number = 6, skip: number = 0): Promise<{
+  projects: Project[];
+  total: number;
+}> {
   const projects = await prisma.project.findMany({
     take: limit,
+    skip: skip,
     orderBy: {
       url: "desc",
     },
   });
-  return projects;
+  return {projects: projects, total: await prisma.project.count()};
 }

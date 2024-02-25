@@ -1,0 +1,21 @@
+@import "./variables";
+
+.map {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+//   display: none;
+  iframe {
+    // left: 0;
+    // top: 0;
+    height: 60vh;
+    @media screen and (max-width: $lg) {
+        height: 50vh;
+    }
+    width: 100%;
+    // position: absolute;
+  }
+}
+

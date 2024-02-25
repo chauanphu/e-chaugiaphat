@@ -33,7 +33,7 @@ export default function ProjectPage({ projects, htmlContent, totalProjects }) {
         {projects && <ProjectList projects={projects} isCarousel={false} />}
         <Pagniation
           currentPage={currentPage}
-          productsPerPage={12}
+          productsPerPage={6}
           onPageChange={(page) => {
             router.push(`/du-an/?page=${page}`);
           }}
@@ -49,9 +49,12 @@ export default function ProjectPage({ projects, htmlContent, totalProjects }) {
   );
 }
 
-export async function getServerSideProps() {
-  const projects = await getManyProjects();
-  const totalProjects = projects.length;
+export async function getServerSideProps(context) {
+  const page = context.query.page || 1;
+
+  const result = await getManyProjects(6, (page - 1) * 6);
+  const totalProjects = result.total;
+  const projects = result.projects;
   const descriptionPath = path.join(
     process.cwd(),
     "data",
