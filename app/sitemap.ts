@@ -1,16 +1,25 @@
-import { getAllSlugs } from "lib/query";
+import { getAllProductSlugs, getAllProjectSlugs } from "lib/query";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = process.env.NEXT_PUBLIC_DOMAIN as string;
-  const slugs = await getAllSlugs();
-  const categorySlugs = slugs.map((slug) => ({
+  const productSlugs = await getAllProductSlugs();
+  const _categorySlugs = productSlugs.map((slug) => ({
     url: host + "/san-pham/" + slug,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8,
   }));
-  const routes = categorySlugs as MetadataRoute.Sitemap;
+  const _projectSlugs = (await getAllProjectSlugs()).map(
+    (slug) => ({
+      url: host + "/du-an/" + slug,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    })
+  ) as MetadataRoute.Sitemap;
+  const categorySlugs = _categorySlugs as MetadataRoute.Sitemap;
+
   return [
     // Add routes
     {
@@ -25,9 +34,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.8,
     },
-    ...routes,
+    ...categorySlugs,
+    {
+      url: host + "/du-an",
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    ..._projectSlugs,
     {
       url: host + "/gioi-thieu",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: host + "/chinh-sach-bao-hanh",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: host + "/chinh-sach-van-chuyen",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: host + "/chinh-sach-thanh-toan",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,

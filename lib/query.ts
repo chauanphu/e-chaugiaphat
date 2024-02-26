@@ -177,7 +177,7 @@ export async function getManyRelatedProduct(
 }
 
 // Create a function get all slugs including, categories, subcategories and products for sitemap
-export async function getAllSlugs(): Promise<string[]> {
+export async function getAllProductSlugs(): Promise<string[]> {
   const categories = await getManyCategories();
   let slugs: string[] = [];
   for (const category of categories) {
@@ -188,6 +188,11 @@ export async function getAllSlugs(): Promise<string[]> {
     }
   }
   return slugs;
+}
+
+export async function getAllProjectSlugs(): Promise<string[]> {
+  const projects = await prisma.project.findMany();
+  return projects.map((project) => project.url);
 }
 
 // Update categories by slug

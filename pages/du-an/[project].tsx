@@ -17,10 +17,9 @@ export default function ProjectDetailPage({
 }) {
   // cast category.product as Product
 
-  const description =
-    "Trần Gia Phát chuyên may mặc đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động,...";
+  const description = project?.description || "Chưa cập nhật";
   const keywords =
-    "Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động";
+    "Châu Gia Phát, thiết bị an toàn giao thông, dự án, dự án đã làm, dự án đã thực hiện";
   const links = [
     { url: "/", label: "Trang chủ" },
     { url: "/du-an", label: "Dự án" },

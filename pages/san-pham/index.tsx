@@ -3,7 +3,6 @@ import Breadcrumbs from '@components/Breadcrumbs';
 import ProductList from '@components/ProductList';
 import Section from '@components/Section';
 import PageDescription from '@components/page-description';
-import { Product } from '@prisma/client';
 import { CategoryWithProducts } from 'lib/prisma';
 import { getManyCategoryWithProd } from 'lib/query';
 
@@ -14,8 +13,8 @@ interface ShopProps {
 export default function Shop({categories }:ShopProps) {
   // cast category.product as Product
 
-  const description = 'Trần Gia Phát chuyên may mặc đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động,...'
-  const keywords = 'Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động'
+  const description = 'Châu Gia Phát là nhà cung cấp hàng đầu các sản phẩm đèn tín hiệu giao thông, thiết bị điện năng lượng mặt trời và đèn chiếu sáng LED uy tín tại Việt Nam.'
+  const keywords = 'Châu Gia Phát, thiết bị an toàn giao thông, đèn chiếu sáng, Thiết bị điện năng lượng mặt trời'
   const links = [
     {url: "/", label: "Trang chủ"},
     {url: "/san-pham", label: "Sản phẩm"}, 

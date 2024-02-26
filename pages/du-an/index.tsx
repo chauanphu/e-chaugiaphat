@@ -16,7 +16,7 @@ export default function ProjectPage({ projects, htmlContent, totalProjects }) {
   
   const description =
     "Với kinh nghiệm thực hiện nhiều dự án lớn nhỏ và năng lực sản xuất mạnh mẽ, công ty chúng tôi tự tin đáp ứng mọi nhu cầu của khách hàng.";
-  const keywords = "Thiết bị Giao thông Châu Gia Phát,";
+  const keywords = "Thiết bị Giao thông Châu Gia Phát, dự án, dự án đã làm, dự án đã thực hiện";
   const links = [
     { url: "/", label: "Trang chủ" },
     { url: "/du-an", label: "Dự án" },

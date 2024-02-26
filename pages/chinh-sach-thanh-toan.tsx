@@ -22,6 +22,7 @@ export default function PaymentPolicy({ htmlContent }: Props) {
     <>
       <PageDescription
         title="Chính sách thanh toán"
+        description="Chính sách thanh toán của Châu Gia Phát luôn được cập nhật mới nhất. Đảm bảo quyền lợi của khách hàng."
         keywords="Chính sách thanh toán, Thanh toán, Châu Gia Phát"
         og={page_og}
       />

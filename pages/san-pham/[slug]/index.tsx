@@ -24,9 +24,9 @@ export default function Shop({ category, totalProduct, htmlContent }: ShopProps)
   const currentPage = Number(router.query.page) || 1;
 
   const description =
-    "Trần Gia Phát chuyên may mặc đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động,...";
+    "Châu Gia Phát luôn khẳng định vị thế là nhà cung cấp uy tín hàng đầu các giải pháp thiết bị an toàn giao thông tại Việt Nam.";
   const keywords =
-    "Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động";
+    "Châu Gia Phát, thiết bị an toàn giao thông, sản phẩm, đèn giao thông, đèn chiếu sáng";
 
   const links = [
     { url: "/", label: "Trang chủ" },

@@ -22,6 +22,7 @@ export default function ShippingPolicy({ htmlContent }: Props) {
     <>
       <PageDescription
         title="Chính sách vận chuyển"
+        description="Chính sách vận chuyển của Châu Gia Phát luôn được cập nhật mới nhất. Đảm bảo quyền lợi của khách hàng."
         keywords="Chính sách vận chuyển, Vận chuyển, Châu Gia Phát"
         og={page_og}
       />

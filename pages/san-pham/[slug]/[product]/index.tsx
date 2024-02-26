@@ -36,7 +36,7 @@ export default function SinglePageProduct({
     ? product.short_description
     : "";
   const keywords =
-    "Trần Gia Phát, đồng phục công nhân, đồng phục áo thun, đồng phục đầu bếp, thiết bị bảo hộ lao động";
+    "Châu Gia Phát, thiết bị an toàn giao thông, sản phẩm, đèn giao thông, đèn chiếu sáng";
   const contact = getContact();
   // Add structured data for product
   const structuredData = {

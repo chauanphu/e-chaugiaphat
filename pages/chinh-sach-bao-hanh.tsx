@@ -23,6 +23,7 @@ export default function WarrantyPolicy({ htmlContent }: Props) {
     <>
       <PageDescription
         title="Chính sách bảo hành"
+        description="Chính sách bảo hành của Châu Gia Phát luôn được cập nhật mới nhất. Đảm bảo quyền lợi của khách hàng."
         keywords="Chính sách bảo hành, Bảo hành, Châu Gia Phát"
         og={page_og}
       />
