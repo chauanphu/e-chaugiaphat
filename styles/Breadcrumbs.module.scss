@@ -12,6 +12,10 @@
       border-radius: 5px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
+      @media screen and (max-width: $md) {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
       &:not(:last-child) {
         // content: ">";
         color:white;
