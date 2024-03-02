@@ -1,11 +1,12 @@
 version: '3'
 services:
   app:
-    container_name: nextjs_quanocongnhan
-    image: chauanphu/e-quanaocongnhan-app:1.1.4
+    container_name: nextjs_chaugiaphat
+    image: chauanphu/e-chaugiaphat-app:1.0.0
+    restart: always
     environment:
-      - NEXTAUTH_URL=https://quanaocongnhan.com
-      - DATABASE_URL=postgresql://user:password@postgres_quanaocongnhan:5432/db?schema=public
+      - NEXTAUTH_URL=https://chaugiaphat.com
+      - DATABASE_URL=postgresql://user:password@postgres_chaugiaphat:5432/db?schema=public
     env_file:
       - .env.local
     volumes:
@@ -18,8 +19,9 @@ services:
       - nginx-network
       - internal-domain
   postgres:
-    container_name: postgres_quanaocongnhan
+    container_name: postgres_chaugiaphat
     image: postgres:16
+    restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
@@ -28,12 +30,24 @@ services:
       - ./db:/var/lib/postgresql/data
     networks:
       - internal-domain
-
+  pgAdmin:
+    container_name: pgadmin_chaugiaphat
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@chaugiaphat.com
+      PGADMIN_DEFAULT_PASSWORD: 258456C@p
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - nginx-network
+      - internal-domain
 networks:
   nginx-network:
     external: true
   internal-domain:
-    driver: bridge
 volumes:
   data-volume:
     driver: local
