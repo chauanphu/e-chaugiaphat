@@ -10,7 +10,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out;
     z-index: 999;
-    text-align: center; /* added */
+    text-align: start; /* added */
     padding-top: 2rem;
     overflow-y: scroll; /* added */
     &.open {
