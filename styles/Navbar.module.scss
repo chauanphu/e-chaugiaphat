@@ -3,11 +3,21 @@
   // Add a box shadow
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   // add sticky position
-  position: sticky;
+  position: fixed;
+  width: 100vw;
   top: 0;
   z-index: 997;
   // Set the background color to be white
   background-color: white;
+  transition: top 0.3s ease-in-out;
+
+  &.navOpen {
+    top: 0;
+  }
+  
+  &.navClose {
+    top: -100%;
+  }
 
   ul {
     display: flex;
@@ -29,6 +39,7 @@ nav.header__top {
   font-size: 14px;
   font-weight: 500;
   padding: 1em 0;
+
   .info {
     max-width: 50%;
     @media screen and (max-width: $md) {

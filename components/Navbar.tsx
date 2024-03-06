@@ -9,6 +9,7 @@ import burger_icon from "../public/images/Menu.svg";
 import logo from "../public/images/logo.png";
 import { CategoryWithSub } from "lib/prisma";
 import { isPageActive, getPages, getContact } from "lib/utils";
+import { useEffect, useState } from "react";
 
 export default function Navbar({
   openSidebar,
@@ -20,35 +21,27 @@ export default function Navbar({
   // Get active link
   const router = useRouter();
   const activeLink = router.pathname;
-  // Copy pages from data then remove the 'San phẩm' page
   const pages = getPages();
-  // Remove 'San phẩm' page
-  // pages = pages.filter((page: Page) => page.name != 'Sản phẩm')
   const contacts = getContact();
 
-  // const structuredData = {
-  //   '@context': 'https://schema.org',
-  //   '@type': 'BreadcrumbList',
-  //   itemListElement: [{
-  //     "@type": "ListItem",
-  //     position: 1,
-  //     name: "Trang chủ",
-  //     item: "https://quanaocongnhan.com/"
-  //   },
-  //   {
-  //     "@type": "ListItem",
-  //     position: 1,
-  //     name: "Giới thiệu",
-  //     item: "https://quanaocongnhan.com/gioi-thieu"
-  //   },
-  //   {
-  //     "@type": "ListItem",
-  //     position: 1,
-  //     name: "Sản phẩm",
-  //     item: "https://quanaocongnhan.com/san-pham"
-  //   }
-  // ],
-  // };
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(isScrollDown())
+      setPrevScrollPos(currentScrollPos);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, visible]);
+
+  const isScrollDown = () => {
+    const currentScrollPos = window.pageYOffset;
+    // Check if scrolling down and scroll more than 70
+    (prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10;
+    return prevScrollPos > currentScrollPos;
+  };
 
   const categoriesGenerator = () => {
     return (
@@ -81,10 +74,13 @@ export default function Navbar({
 
   return (
     <>
-      {/* <StructuredData data={structuredData}/> */}
-      <header className={styles.header}>
+      <header className={`${styles.header} ${
+            visible ? styles.navOpen : styles.navClose
+          }`}>
         {/* Header top */}
-        <nav className={styles.header__top}>
+        <nav
+          className={`${styles.header__top}`}
+        >
           <div className="container">
             <ul className={styles.info}>
               <li>
@@ -129,9 +125,7 @@ export default function Navbar({
           </div>
           {/* Add list of menu with active links */}
           <div className={styles.navbar__menu}>
-            <ul className="container">
-              {categories && categoriesGenerator()}
-            </ul>
+            <ul className="container">{categories && categoriesGenerator()}</ul>
           </div>
         </nav>
       </header>
