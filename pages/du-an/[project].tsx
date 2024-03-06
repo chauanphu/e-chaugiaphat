@@ -72,7 +72,6 @@ export async function getServerSideProps({ params }) {
   const htmlContent = await markdownToHtml(descriptionPath);
   const slug = params?.project || "";
   const project = await getOneProjectBySlug(slug);
-  console.log(project);
   return {
     props: { project, htmlContent },
     // revalidate: 10,
