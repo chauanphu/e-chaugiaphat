@@ -119,12 +119,13 @@ nav.navbar {
         left: 0;
         //Set width to cover content
         width: 100%;
-        min-width: 10vw;
+        min-width: 12vw;
         background-color: $color-primary-dark;
         padding: 1em;
         border-radius: 1em;
         li {
           margin-bottom: 1em;
+          margin-right: 0;
           &:last-child {
             margin-bottom: 0;
           }
