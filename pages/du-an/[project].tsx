@@ -5,15 +5,19 @@ import markdownToHtml from "lib/markdownToHTML";
 import { getOneProjectBySlug } from "lib/query";
 import path from "path";
 import blog_style from "styles/Blog.module.scss";
+import style from "styles/ProjectDetail.module.scss";
 import ProductList from "@components/ProductList";
 import { ProjectWithProduct } from "lib/prisma";
+import { getAllImagesinFolder } from "lib/requireImage";
 
 export default function ProjectDetailPage({
   project,
   htmlContent,
+  images_url,
 }: {
   project: ProjectWithProduct;
   htmlContent: string;
+  images_url: string[];
 }) {
   // cast category.product as Product
 
@@ -36,21 +40,21 @@ export default function ProjectDetailPage({
       {project && (
         <div className="container">
           <h1>{project.name}</h1>
-          <Image
-            src={
-              project.image_url ? "/api/images/du-an/" + project.image_url : ""
-            }
-            alt={project.name}
-            width={300}
-            height={300}
-            priority={true}
-            // style= {{width: "100%", height: "auto"}}
-          />
-          <p>
-            {project.description}
-          </p>
+          <div className={style.imageGrid}>
+            {images_url &&
+              images_url.map((image, index) => (
+                <Image
+                  src={"/api/images/du-an/" + image}
+                  alt={project.name}
+                  width={300}
+                  height={300}
+                  priority={true}
+                />
+              ))}
+          </div>
+          <p>{project.description}</p>
           <h1>Sản phẩm cho dự án</h1>
-          <ProductList products={project.products}/>
+          <ProductList products={project.products} />
           <div
             className={blog_style.blog}
             dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
@@ -72,8 +76,10 @@ export async function getServerSideProps({ params }) {
   const htmlContent = await markdownToHtml(descriptionPath);
   const slug = params?.project || "";
   const project = await getOneProjectBySlug(slug);
+  const images_url = await getAllImagesinFolder(`du-an/${slug}` || "");
+  console.log(images_url);
   return {
-    props: { project, htmlContent },
+    props: { project, htmlContent, images_url },
     // revalidate: 10,
   };
 }
