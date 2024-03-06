@@ -44,6 +44,7 @@ export default function ProjectDetailPage({
             {images_url &&
               images_url.map((image, index) => (
                 <Image
+                  key={index}
                   src={"/api/images/du-an/" + image}
                   alt={project.name}
                   width={300}
