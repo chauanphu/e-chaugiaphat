@@ -16,9 +16,15 @@ interface ShopProps {
   category: CategoryWithProducts;
   totalProduct: number;
   htmlContent: string;
+  contactContent: string;
 }
 
-export default function Shop({ category, totalProduct, htmlContent }: ShopProps) {
+export default function Shop({
+  category,
+  totalProduct,
+  htmlContent,
+  contactContent,
+}: ShopProps) {
   // Get the page number from query
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
@@ -66,6 +72,12 @@ export default function Shop({ category, totalProduct, htmlContent }: ShopProps)
         <div
           dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
         />
+        <div
+          className={blog_style.contact}
+          dangerouslySetInnerHTML={{
+            __html: contactContent || "Chưa cập nhật",
+          }}
+        />
       </div>
     </>
   );
@@ -87,11 +99,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.cwd(),
     "data",
     "_posts",
-    "san-pham.md"
+    `${slug}.md`
   );
+  const contactPath = path.join(process.cwd(), "data", "_posts", "lien-he.md");
   const htmlContent = await markdownToHtml(descriptionPath);
+  const contactContent = await markdownToHtml(contactPath);
   return {
-    props: { category, totalProduct, htmlContent },
+    props: { category, totalProduct, htmlContent, contactContent },
     // revalidate: 10,
   };
 };
