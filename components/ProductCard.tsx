@@ -22,8 +22,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               itemProp="image"
               src={product.image ? "/api/images/san-pham/" + product.image : ""}
               alt={product.name}
-              width={150}
-              height={150}
+              width={300}
+              height={300}
             />
             <h2 className={styles.ProductCard__title} itemProp="name">
               {product.name}

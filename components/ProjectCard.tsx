@@ -20,8 +20,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({  project }) => {
               className={styles.ProductCard__image}
               src={project.image_url ? `/api/images/du-an/${project.url}/${project.image_url}`  : ""}
               alt={project.name}
-              width={150}
-              height={150}
+              width={300}
+              height={300}
+              priority={false}
             />
             <h2 className={styles.ProductCard__title}>
               {project.name}

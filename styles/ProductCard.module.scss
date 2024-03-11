@@ -17,9 +17,9 @@
 
   .ProductCard__image {
     width: 90%;
-    height: auto;
-    background-size: cover;
-    background-position: center; 
+    // Set height to be equal width
+    // height: auto;
+    object-fit: cover;
   }
 
   .ProductCard__title {
