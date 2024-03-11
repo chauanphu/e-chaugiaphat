@@ -1,18 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fs from 'fs';
 import requireImage from 'lib/requireImage';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const {name} = req.query;
+  const {name, folder} = req.query;
   if (!name) {
     res.status(400).json({ message: 'Missing parameters' });
     return;
   }
   // Construct the path to the image file
-  const file = requireImage('du-an', name as string);
+  const file = requireImage('du-an', folder+ "/" + name as string);
   // Check if the file exists
   if (file) {
     // Read the file

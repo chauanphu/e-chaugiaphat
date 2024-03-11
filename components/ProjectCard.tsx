@@ -18,7 +18,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({  project }) => {
           <div className={styles.ProductCard}>
             <Image
               className={styles.ProductCard__image}
-              src={project.image_url ? "/api/images/du-an/" + project.image_url : ""}
+              src={project.image_url ? `/api/images/du-an/${project.url}/${project.image_url}`  : ""}
               alt={project.name}
               width={150}
               height={150}

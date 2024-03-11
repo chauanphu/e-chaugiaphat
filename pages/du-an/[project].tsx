@@ -77,8 +77,9 @@ export async function getServerSideProps({ params }) {
   const htmlContent = await markdownToHtml(descriptionPath);
   const slug = params?.project || "";
   const project = await getOneProjectBySlug(slug);
-  const images_url = await getAllImagesinFolder(`du-an/${slug}` || "");
-  console.log(images_url);
+  const images_url = await getAllImagesinFolder(`du-an/${slug}` || "").map(
+    (image) => slug + "/" + image
+  );
   return {
     props: { project, htmlContent, images_url },
     // revalidate: 10,
