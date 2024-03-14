@@ -75,7 +75,7 @@ export async function getServerSideProps({ params }) {
     "du-an.md"
   );
   const htmlContent = await markdownToHtml(descriptionPath);
-  const slug = params?.project || "";
+  const slug = params?.city || "";
   const project = await getOneProjectBySlug(slug);
   const images_url = await getAllImagesinFolder(`du-an/${slug}` || "").map(
     (image) => slug + "/" + image
