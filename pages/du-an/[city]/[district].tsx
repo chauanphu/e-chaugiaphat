@@ -1,7 +1,7 @@
 import Breadcrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
 import PageDescription from "@components/page-description";
-import markdownToHtml from "lib/markdownToHTML";
+import markdownToHtml, { concatMDToHtml } from "lib/markdownToHTML";
 import { getOneProjectBySlug } from "lib/query";
 import path from "path";
 import blog_style from "styles/Blog.module.scss";
@@ -13,10 +13,12 @@ import { getAllImagesinFolder } from "lib/requireImage";
 export default function ProjectDetailPage({
   project,
   htmlContent,
+  project_html,
   images_url,
 }: {
   project: ProjectWithProduct;
   htmlContent: string;
+  project_html: string;
   images_url: string[];
 }) {
   // cast category.product as Product
@@ -53,7 +55,10 @@ export default function ProjectDetailPage({
                 />
               ))}
           </div>
-          <p>{project.description}</p>
+          <div
+            className={blog_style.blog}
+            dangerouslySetInnerHTML={{ __html: project_html || "Chưa cập nhật" }}
+          />
           <h1>Sản phẩm cho dự án</h1>
           <ProductList products={project.products} />
           <div
@@ -75,13 +80,14 @@ export async function getServerSideProps({ params }) {
     "du-an.md"
   );
   const htmlContent = await markdownToHtml(descriptionPath);
+  const project_html = await concatMDToHtml("du-an", params?.city || "")
   const slug = params?.city || "";
   const project = await getOneProjectBySlug(slug);
   const images_url = await getAllImagesinFolder(`du-an/${slug}` || "").map(
     (image) => slug + "/" + image
   );
   return {
-    props: { project, htmlContent, images_url },
+    props: { project, htmlContent, project_html, images_url },
     // revalidate: 10,
   };
 }

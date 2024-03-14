@@ -3,6 +3,7 @@ import html from 'remark-html'
 import fs from 'fs'
 import matter from 'gray-matter';
 import remarkGfm from 'remark-gfm';
+import path from 'path';
 
 export default async function markdownToHtml(path: string) {
   if (fs.existsSync(path)) {
@@ -21,4 +22,14 @@ export default async function markdownToHtml(path: string) {
     return contentHtml
   }
   return ''
+}
+
+export async function concatMDToHtml(...paths: string[]) {
+  let content = ''
+  for (const _path of paths) {
+    const relativePath = path.join(process.cwd(), 'data','_posts',_path)
+    const html = await markdownToHtml(relativePath)
+    content += html
+  }
+  return content
 }
