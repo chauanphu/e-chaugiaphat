@@ -7,7 +7,7 @@ import path from "path";
 import blog_style from "styles/Blog.module.scss";
 import style from "styles/ProjectDetail.module.scss";
 import ProductList from "@components/ProductList";
-import { ProjectWithProduct } from "lib/prisma";
+import { ProjectWithProductDistrict } from "lib/prisma";
 import { getAllImagesinFolder } from "lib/requireImage";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export default function ProjectDetailPage({
   project_html,
   images_url,
 }: {
-  project: ProjectWithProduct;
+  project: ProjectWithProductDistrict;
   htmlContent: string;
   project_html: string;
   images_url: string[];
@@ -62,9 +62,9 @@ export default function ProjectDetailPage({
           />
           <h2>Châu Gia Phát thi công, lắp đặt đèn tín hiệu giao thông tại các quận/huyện sau:</h2>
           <ul className={style.districts}>
-            {district.map((item, index) => (
+            {project.districts.map((item, index) => (
               <li key={index}>
-                <Link href={`/du-an/${project.url}/${item}`}>Đèn tín hiệu giao thông {item}</Link>
+                <Link href={`/du-an/${item.projectUrl}/${item.slug}`}>Đèn tín hiệu giao thông {item.name}</Link>
               </li>
             ))}
           </ul>
@@ -91,7 +91,7 @@ export async function getServerSideProps({ params }) {
   const htmlContent = await markdownToHtml(descriptionPath);
   const slug = params?.city || "";
   const project_html = await concatMDToHtml("du-an/" + slug + '.md')
-  const project = await getOneProjectBySlug(slug);
+  const project = await getOneProjectBySlug(slug) as ProjectWithProductDistrict;
   const images_url = await getAllImagesinFolder(`du-an/${slug}` || "").map(
     (image) => slug + "/" + image
   );
