@@ -25,7 +25,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({  project }) => {
               priority={false}
             />
             <h2 className={styles.ProductCard__title}>
-              {project.name}
+              Cung cấp đèn tín hiệu giao thông {project.name}
             </h2>
             <p className={styles.ProductCard__description}>
               {project.description}

@@ -42,7 +42,7 @@ export default function ProjectDetailPage({
       <Breadcrumbs breadcrumbs={links} />
       {project && (
         <div className="container">
-          <h1>{project.districts[0].name}</h1>
+          <h1>Cung cấp đèn tín hiệu giao thông {project.districts[0].name}</h1>
           <div className={style.imageGrid}>
             {images_url &&
               images_url.map((image, index) => (
