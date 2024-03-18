@@ -9,6 +9,7 @@ import style from "styles/ProjectDetail.module.scss";
 import ProductList from "@components/ProductList";
 import { ProjectWithProduct } from "lib/prisma";
 import { getAllImagesinFolder } from "lib/requireImage";
+import Link from "next/link";
 
 export default function ProjectDetailPage({
   project,
@@ -22,7 +23,7 @@ export default function ProjectDetailPage({
   images_url: string[];
 }) {
   // cast category.product as Product
-
+  const district = ['Tân An','Bến Lức']
   const description = project?.description || "Chưa cập nhật";
   const keywords =
     "Châu Gia Phát, thiết bị an toàn giao thông, dự án, dự án đã làm, dự án đã thực hiện";
@@ -59,6 +60,14 @@ export default function ProjectDetailPage({
             className={blog_style.blog}
             dangerouslySetInnerHTML={{ __html: project_html || "Chưa cập nhật" }}
           />
+          <h2>Châu Gia Phát thi công, lắp đặt đèn tín hiệu giao thông tại các quận/huyện sau:</h2>
+          <ul className={style.districts}>
+            {district.map((item, index) => (
+              <li key={index}>
+                <Link href={`/du-an/${project.url}/${item}`}>Đèn tín hiệu giao thông {item}</Link>
+              </li>
+            ))}
+          </ul>
           <h1>Sản phẩm cho dự án</h1>
           <ProductList products={project.products} />
           <div
