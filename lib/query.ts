@@ -3,7 +3,11 @@ import prisma, { ProjectWithProductDistrict } from "./prisma";
 import { ProductWithCategory, CategoryWithSub } from "./prisma";
 
 export async function getManyCategories(): Promise<Category[]> {
-  const categories = await prisma.category.findMany();
+  const categories = await prisma.category.findMany({
+    orderBy: {
+      order: "desc"
+    }
+  });
   return categories;
 }
 
@@ -21,6 +25,9 @@ export async function getManyCategoriesWithSub() {
           slug: true,
         },
       },
+    },
+    orderBy: {
+      order: "desc",
     },
   });
   return categories;
@@ -76,6 +83,7 @@ export async function getManyCategoryWithProd(limit) {
     select: {
       name: true,
       slug: true,
+      order: true,
     },
     where: {
       OR: [
@@ -98,8 +106,11 @@ export async function getManyCategoryWithProd(limit) {
         },
       ],
     },
+    orderBy: {
+      order: "desc",
+    },
   });
-
+  console.log(categories)
   // Map over the categories to fetch their products
   const categoriesWithProducts = await Promise.all(
     categories.map(async (category) => {

@@ -11,6 +11,7 @@ model Category {
   slug       String     @id
   name       String
   parentSlug String?
+  order      Int        @default(0)
   parent     Category?  @relation("ChildToParent", fields: [parentSlug], references: [slug])
   children   Category[] @relation("ChildToParent")
   products   Product[]
