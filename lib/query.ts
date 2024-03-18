@@ -300,3 +300,21 @@ export async function getOneProjectBySlug(slug: string): Promise<ProjectWithProd
   });
   return project;
 }
+
+export async function getOneProjectWithDistrict(project_url, district_url): Promise<ProjectWithProductDistrict | null> {
+  const project = await prisma.project.findUnique({
+    where: {
+      url: project_url,
+    },
+    include: {
+      products: true,
+      districts: {
+        take: 1,
+        where: {
+          slug: district_url,
+        },
+      },
+    },
+  });
+  return project;
+}

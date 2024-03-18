@@ -27,6 +27,7 @@ export default async function markdownToHtml(path: string) {
 export async function concatMDToHtml(...paths: string[]) {
   let content = ''
   for (const _path of paths) {
+    console.log(_path)
     const relativePath = path.join(process.cwd(), 'data','_posts',_path)
     const html = await markdownToHtml(relativePath)
     content += html
