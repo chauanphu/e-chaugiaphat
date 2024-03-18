@@ -1,11 +1,11 @@
 import PageDescription from "@components/page-description";
-import markdownToHtml from "lib/markdownToHTML";
+import markdownToHtml, { concatMDToHtml } from "lib/markdownToHTML";
 import { GetServerSideProps } from "next";
 import path from "path";
 import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 import Breadcrumbs from "@components/Breadcrumbs";
 import StructuredData from "@components/structured-data";
-import blog_style from 'styles/Blog.module.scss'
+import HTMLContent, { HTMLContentTypes } from "@components/HTMLContent";
 
 type Props = {
   htmlContent?: string;
@@ -27,11 +27,9 @@ export default function WarrantyPolicy({ htmlContent }: Props) {
         keywords="Chính sách bảo hành, Bảo hành, Châu Gia Phát"
         og={page_og}
       />
-      <div className={`container ${blog_style.blog}`}>
+      <div className={`container`}>
         <Breadcrumbs breadcrumbs={links} />
-        <div
-          dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
-        />
+        <HTMLContent htmlContent={htmlContent} type={HTMLContentTypes.BLOG} />
       </div>
     </>
   );
@@ -39,13 +37,7 @@ export default function WarrantyPolicy({ htmlContent }: Props) {
 
 // Config as server side rendering get slug from params
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const descriptionPath = path.join(
-    process.cwd(),
-    "data",
-    "_posts",
-    "chinh-sach-bao-hanh.md"
-  );
-  const htmlContent = await markdownToHtml(descriptionPath);
+  const htmlContent = await concatMDToHtml('chinh-sach-bao-hanh.md');
   return {
     props: { htmlContent },
   };

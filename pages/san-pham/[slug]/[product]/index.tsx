@@ -13,24 +13,23 @@ import phone_icon from "public/images/phone-icon.png";
 import MyCarousel from "@components/MyCarousel";
 import ProductCard from "@components/ProductCard";
 import path from "path";
-import markdownToHtml from "lib/markdownToHTML";
+import markdownToHtml, { concatMDToHtml } from "lib/markdownToHTML";
 import StructuredData from "@components/structured-data";
 import Breadcrumbs from "@components/Breadcrumbs";
 
 import blog_style from "styles/Blog.module.scss";
+import HTMLContent, { HTMLContentProps, HTMLContentTypes } from "@components/HTMLContent";
 
 type Props = {
   product?: ProductWithCategory;
   related_products?: ProductWithCategory[];
-  descriptionContent?: string;
-  contactContent?: string;
+  htmlContents: HTMLContentProps[];
 };
 
 export default function SinglePageProduct({
   product,
   related_products,
-  descriptionContent,
-  contactContent,
+  htmlContents
 }: Props) {
   const description = product?.short_description
     ? product.short_description
@@ -145,18 +144,9 @@ export default function SinglePageProduct({
             </div>
           </div>
           <h1>Mô tả</h1>
-            <div
-              className={blog_style.blog}
-              dangerouslySetInnerHTML={{
-                __html: descriptionContent || "Chưa cập nhật",
-              }}
-            />
-            <div
-              className={blog_style.contact}
-              dangerouslySetInnerHTML={{
-                __html: contactContent || "Chưa cập nhật",
-              }}
-            />
+          {htmlContents.map((content, index) => (
+            <HTMLContent key={index} {...content} />
+          ))}
           {related_products && related_products.length > 0 && (
             <>
               <h1>Sản phẩm tương tự</h1>
@@ -185,18 +175,13 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       product?.slug
     );
   }
-  const descriptionPath = path.join(
-    process.cwd(),
-    "data",
-    "_posts",
-    "san-pham",
-    `${product?.slug}.md`
-  );
-  const contactPath = path.join(process.cwd(), "data", "_posts", "lien-he.md");
-  const descriptionContent = await markdownToHtml(descriptionPath);
-  const contactContent = await markdownToHtml(contactPath);
+  let htmlContents: HTMLContentProps[] = []
+  const htmlContent = await concatMDToHtml(`${slug}.md`);
+  htmlContents.push({ htmlContent, type: HTMLContentTypes.BLOG });
+  const contactContent = await concatMDToHtml('lien-he.md');
+  htmlContents.push({ htmlContent: contactContent, type: HTMLContentTypes.CONTACT });
   return {
-    props: { product, related_products, descriptionContent, contactContent },
+    props: { product, related_products, htmlContents },
     // revalidate: 10,
   };
 };

@@ -1,10 +1,10 @@
 import PageDescription from "@components/page-description";
-import markdownToHtml from "lib/markdownToHTML";
+import { concatMDToHtml } from "lib/markdownToHTML";
 import { GetServerSideProps } from "next";
-import path from "path";
 import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 import Breadcrumbs from "@components/Breadcrumbs";
-import blog_style from 'styles/Blog.module.scss'
+import blog_style from "styles/Blog.module.scss";
+import HTMLContent, { HTMLContentTypes } from "@components/HTMLContent";
 
 type Props = {
   htmlContent?: string;
@@ -28,9 +28,7 @@ export default function ShippingPolicy({ htmlContent }: Props) {
       />
       <div className={`container ${blog_style.blog}`}>
         <Breadcrumbs breadcrumbs={links} />
-        <div
-          dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
-        />
+        <HTMLContent htmlContent={htmlContent} type={HTMLContentTypes.BLOG} />
       </div>
     </>
   );
@@ -38,13 +36,7 @@ export default function ShippingPolicy({ htmlContent }: Props) {
 
 // Config as server side rendering get slug from params
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const descriptionPath = path.join(
-    process.cwd(),
-    "data",
-    "_posts",
-    "chinh-sach-van-chuyen.md"
-  );
-  const htmlContent = await markdownToHtml(descriptionPath);
+  const htmlContent = await concatMDToHtml("chinh-sach-thanh-toan.md");
   return {
     props: { htmlContent },
   };

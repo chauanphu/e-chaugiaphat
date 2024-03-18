@@ -3,10 +3,9 @@ import Pagniation from "@components/Pagniation";
 import ProjectList from "@components/ProjectList";
 import Section from "@components/Section";
 import PageDescription from "@components/page-description";
-import markdownToHtml from "lib/markdownToHTML";
+import { concatMDToHtml } from "lib/markdownToHTML";
 import { getManyProjects } from "lib/query";
 import { useRouter } from "next/router";
-import path from "path";
 import blog_style from "styles/Blog.module.scss";
 
 export default function ProjectPage({ projects, htmlContent, totalProjects }) {
@@ -55,13 +54,7 @@ export async function getServerSideProps(context) {
   const result = await getManyProjects(6, (page - 1) * 6);
   const totalProjects = result.total;
   const projects = result.projects;
-  const descriptionPath = path.join(
-    process.cwd(),
-    "data",
-    "_posts",
-    "du-an.md"
-  );
-  const htmlContent = await markdownToHtml(descriptionPath);
+  const htmlContent = await concatMDToHtml('du-an.md');
 
   return {
     props: { projects, htmlContent, totalProjects },

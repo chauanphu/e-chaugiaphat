@@ -1,5 +1,4 @@
 import Section from "@components/Section";
-import prisma from "lib/prisma";
 import PageDescription from "@components/page-description";
 import { CategoryWithProducts } from "lib/prisma";
 import { GetServerSideProps } from "next";
@@ -8,22 +7,19 @@ import { getOneCategoryWithProd } from "lib/query";
 import Pagniation from "@components/Pagniation";
 import { useRouter } from "next/router";
 import Breadcrumbs from "@components/Breadcrumbs";
-import path from "path";
-import markdownToHtml from "lib/markdownToHTML";
-import blog_style from "styles/Blog.module.scss";
+import { concatMDToHtml } from "lib/markdownToHTML";
+import HTMLContent, { HTMLContentProps, HTMLContentTypes } from "@components/HTMLContent";
 
 interface ShopProps {
   category: CategoryWithProducts;
   totalProduct: number;
-  htmlContent: string;
-  contactContent: string;
+  htmlContents: HTMLContentProps[];
 }
 
 export default function Shop({
   category,
   totalProduct,
-  htmlContent,
-  contactContent,
+  htmlContents,
 }: ShopProps) {
   // Get the page number from query
   const router = useRouter();
@@ -68,16 +64,10 @@ export default function Shop({
           </>
         )}
       </Section>
-      <div className={`container ${blog_style.blog}`}>
-        <div
-          dangerouslySetInnerHTML={{ __html: htmlContent || "Chưa cập nhật" }}
-        />
-        <div
-          className={blog_style.contact}
-          dangerouslySetInnerHTML={{
-            __html: contactContent || "Chưa cập nhật",
-          }}
-        />
+      <div className={`container`}>
+        {htmlContents.map((content, index) => (
+          <HTMLContent key={index} {...content} />
+        ))}
       </div>
     </>
   );
@@ -93,19 +83,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     page as number,
     12
   );
+  let htmlContents: HTMLContentProps[] = []
   const category = result.category;
   const totalProduct = result.total;
-  const descriptionPath = path.join(
-    process.cwd(),
-    "data",
-    "_posts",
-    `${slug}.md`
-  );
-  const contactPath = path.join(process.cwd(), "data", "_posts", "lien-he.md");
-  const htmlContent = await markdownToHtml(descriptionPath);
-  const contactContent = await markdownToHtml(contactPath);
+  const htmlContent = await concatMDToHtml(`${slug}.md`);
+  htmlContents.push({ htmlContent, type: HTMLContentTypes.BLOG });
+  const contactContent = await concatMDToHtml('lien-he.md');
+  htmlContents.push({ htmlContent: contactContent, type: HTMLContentTypes.CONTACT });
   return {
-    props: { category, totalProduct, htmlContent, contactContent },
+    props: { category, totalProduct, htmlContents },
     // revalidate: 10,
   };
 };
